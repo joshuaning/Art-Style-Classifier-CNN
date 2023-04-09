@@ -199,11 +199,11 @@ if __name__ == '__main__':
         
         #save trained model every 5 epochs
         if(epoch % 5 == 4):
-            PATH = './epoch_{}.pth'.format(epoch+1)
+            PATH = './models/epoch_{}.pth'.format(epoch+1)
             torch.save(net.state_dict(), PATH)
         
     print('Finished Training')
 
     import pandas as pd
     DF = pd.DataFrame(stats)
-    DF.to_csv("stats.csv")
+    DF.to_csv("./stats/stats.csv")
