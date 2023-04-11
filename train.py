@@ -3,7 +3,6 @@ from os import walk
 import copy
 import pickle
 
-import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
 
@@ -31,10 +30,10 @@ if __name__ == '__main__':
     transform = transforms.Compose([transforms.ToTensor(), 
                                     transforms.Normalize([0.5162, 0.4644, 0.3975], 
                                                         [0.2728, 0.2641, 0.2575])])
-    dataset = datasets.ImageFolder("./data_256/art_pictures/train",
+    dataset = datasets.ImageFolder("/home/joshning/data_256/art_pictures/train",
                                 transform=transform)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=32, 
-                                            shuffle=True, num_workers=2)
+                                            shuffle=True, num_workers=4)
 
 
     # implementation of VGG-BN for 3*256*256 inputs
@@ -168,7 +167,7 @@ if __name__ == '__main__':
 
     num_epoch = 50
     total_step = len(dataloader)
-    stats = np.empty((0,3), float)
+    stats = np.empty((0,4), float)
 
 
     for epoch in tqdm(range(num_epoch)):  # loop over the dataset multiple times
@@ -192,18 +191,18 @@ if __name__ == '__main__':
 
             # stats
             running_loss += loss.item()*inputs.size(0)
-            running_correct += torch.sum(preds == labels)
-            stats = np.vstack((stats, np.array([running_loss, running_correct, (i+1)*32])))
+            curr_correct = torch.sum(preds == labels)
+            running_correct += curr_correct
+            stats = np.vstack((stats, np.array([curr_correct, running_loss, running_correct, (i+1)*32])))
             print('Epoch [{}/{}], Step [{}/{}], Running Loss: {:.4f}, running Correct: [{}/{}]'
                 .format(epoch+1, num_epoch, i+1, total_step, running_loss, running_correct, (i+1)*32))
         
-        #save trained model every 5 epochs
-        if(epoch % 5 == 4):
-            PATH = './models/epoch_{}.pth'.format(epoch+1)
-            torch.save(net.state_dict(), PATH)
+        #save trained model every epoch
+        PATH = '/scratch/eecs351w23_class_root/eecs351w23_class/joshning/epoch_{}.pth'.format(epoch+1)
+        torch.save(net.state_dict(), PATH)
         
     print('Finished Training')
 
     import pandas as pd
     DF = pd.DataFrame(stats)
-    DF.to_csv("./stats/stats.csv")
+    DF.to_csv("./stats/vgg_16_stats.csv")
