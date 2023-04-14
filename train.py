@@ -13,6 +13,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchinfo import summary
 import torch.optim as optim
+import pandas as pd
+
 
 if __name__ == '__main__':
     # check if files can be opened
@@ -200,9 +202,8 @@ if __name__ == '__main__':
         #save trained model every epoch
         PATH = '/scratch/eecs351w23_class_root/eecs351w23_class/joshning/epoch_{}.pth'.format(epoch+1)
         torch.save(net.state_dict(), PATH)
+
+        DF = pd.DataFrame(stats)
+        DF.to_csv('/scratch/eecs351w23_class_root/eecs351w23_class/joshning/stats_epoch_{}.csv'.format(epoch+1)) 
         
     print('Finished Training')
-
-    import pandas as pd
-    DF = pd.DataFrame(stats)
-    DF.to_csv("./stats/vgg_16_stats.csv")
