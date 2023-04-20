@@ -66,7 +66,10 @@ hold on
 plot((window:length(stats_f)+window-1)/2, stats_f, 'linewidth', 2); 
 axis([0 3*1563 0 0.5])
 xline(1563:1563:3*1563,'-',{'epoch'})
+title('mini VGG vs VGG-16 (Batch Size = 16)');
 legend('mini VGG batch accuracy moving avg', 'VGG 16 batch accuracy moving avg')
+xlabel('Number of Batches Normalized(n)');
+ylabel('Batch Accuracy');
 
 
 % VGG-16 BN batch size 32 -------------------------------------------------

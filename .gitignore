@@ -3,3 +3,4 @@
 /data_256
 /data_32
 *.asv
+/models/epoch_19_bs16.pth
