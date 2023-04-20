@@ -3,6 +3,7 @@ Created and maintained by Joshua Ning
 
 ## Getting Started
 Download data from [artbench](https://github.com/liaopeiyuan/artbench)  
+Download pre-trained model from [google drive](https://drive.google.com/file/d/1rv3zAzLSpKKHfyAWpPNBAD913jZzvPzB/view?usp=share_link) and move it into `/models`  
 Use Conda Python 3.9.7  
 
 ## Dependencies:
@@ -15,8 +16,9 @@ Use Conda Python 3.9.7
 
 
 ## File Structures
-Only `351.ipynb` and `data_256` are required to start training  
-`model_train_val.ipynb` is optimized for GPU with CUDA  
+Only `data_256` is required to start training  
+`model_train_val.ipynb` can train and validate,is optimized for GPU with CUDA  
+`351.ipynb` is a notebook with more documentation, essentially the same as `model_train_val.ipynb`  
 `train.py` is a python script that can only train(for server)  
 The stats and models will be saved in the respective directories  
 The train.py file is optimized for training only
