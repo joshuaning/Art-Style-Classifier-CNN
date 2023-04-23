@@ -17,11 +17,10 @@ Use Conda Python 3.9.7
 
 ## File Structures
 Only `data_256` is required to start training  
-`model_train_val.ipynb` can train and validate,is optimized for GPU with CUDA  
+`model_train_val.ipynb` can train and validate, is optimized for GPU with CUDA  
 `351.ipynb` is a notebook with more documentation, essentially the same as `model_train_val.ipynb`  
 `train.py` is a python script that can only train(for server)  
 The stats and models will be saved in the respective directories  
-The train.py file is optimized for training only
 ![file structure pic](./Media/file_structure.png)
 
 ## Available models
