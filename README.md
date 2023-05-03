@@ -23,6 +23,25 @@ Only `data_256` is required to start training
 The stats and models will be saved in the respective directories  
 ![file structure pic](./Media/file_structure.png)
 
+
+## How to Train and Test
+1. make sure all the dependencies are installed
+2. open `model_train_val.ipynb`
+3. run code blocks 1-4
+4. For training only: 
+    * In code block 5, if training for the first time, change `save_point` variable to 0
+    * In code block 5, if you want to continue training from a previous model, enter the last epoch number
+    * Skip code block 6 if training for the first time
+    * Change the hyper-parameter variables on top of code block  7 if needed
+    * Change the output file directory in code block 7 on lines 34 and 38 if needed
+5. For evaluation only:
+    * Code block 8 is for evaluating multiple epochs of a trained model
+        * Make sure line 13 file path is consistent with the saved model path
+    * Code block 9 is for evaluating single model
+        * Make sure line 6 file path is consistent with the saved model path
+    * Code block 10 is for generating a decision matrix, which must be run after code block 9
+
+
 ## Available models
 1. `test_v1.pth` A small model from tutorial to test loading and saving data  
     Trained for 1 epoch, accuracy of 10%  
