@@ -205,3 +205,5 @@ if __name__ == '__main__':
         DF.to_csv('./stats_saves/stats_epoch_{}.csv'.format(epoch+1)) 
 
     print('Finished Training')
+
+# test
